@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emmodogl <rootkalixox@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 05:23:53 by atasyure          #+#    #+#             */
-/*   Updated: 2024/03/15 21:27:50 by atasyure         ###   ########.fr       */
+/*   Updated: 2024/03/15 20:32:37 by emmodogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,14 @@ void	get_readline(t_mini *mini)
 }
 
 
-void	parser(t_mini *mini, char **env, int control)
+void	go_parser(t_mini *mini, char **env, int control)
 {
 	control = check(mini);
 	if (!control)
 	{
-		proper_free(&mini->lex_list->lex);
-		free_loop(control, mini);
+		//error_free(&(mini->lex_list)->lex);
+		proper_free(&mini->lex_list->lex);//added new free func
+		free_loop(control, mini);//maybe only free cmd instead?
 		return ;
 	}
 	if (ft_strcmp(mini->cmd, ""))
@@ -64,7 +65,7 @@ void	start_minishell(t_mini *mini, char **env, int control)
 		{
 			lexer(mini);
 			expander(mini);
-			parser(mini, env, control);
+			go_parser(mini, env, control);
 		}
 		else
 		{
@@ -86,7 +87,7 @@ int	main(int argc, char **argv, char **env)
 {
 	t_mini	*mini;
 
-	if (argument_control(argc, argv) != 0) 
+	if (argument_control(argc, argv) != 0) // def 0 as success and 1 as ERROR;
 		return (-1);
 	if (init(&mini) != 0)
 		return (-1);

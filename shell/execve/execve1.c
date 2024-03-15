@@ -6,7 +6,7 @@
 /*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 05:22:51 by atasyure          #+#    #+#             */
-/*   Updated: 2024/03/15 21:33:18 by atasyure         ###   ########.fr       */
+/*   Updated: 2024/03/15 22:12:32 by atasyure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ char	**get_args(t_parse *parse)
 	if (!exec)
 		return (NULL);
 	i = 0;
-	exec[0] = ft_strdup(parse->cmd);
+	if (parse->cmd == NULL)
+		exec[0] = NULL;
+	else
+		exec[0] = ft_strdup(parse->cmd);
 	j = 1;
 	if (parse->text)
 	{

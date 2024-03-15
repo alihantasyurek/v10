@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmodogl <rootkalixox@gmail.com>           +#+  +:+       +#+        */
+/*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 05:23:06 by atasyure          #+#    #+#             */
-/*   Updated: 2024/03/15 20:19:23 by emmodogl         ###   ########.fr       */
+/*   Updated: 2024/03/15 22:16:30 by atasyure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,7 @@ void	expand_dollar_internal(t_mini *mini, t_list *lex)
 void	expander(t_mini *mini)
 {
 	expand_tilde(mini);
+	if(mini->cmd[0] == '<' && mini->cmd[1] == '<')
+		return ;
 	expand_dollar(mini);
 }

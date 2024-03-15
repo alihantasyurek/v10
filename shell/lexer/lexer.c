@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emmodogl <rootkalixox@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 05:23:46 by atasyure          #+#    #+#             */
-/*   Updated: 2024/03/15 21:25:04 by atasyure         ###   ########.fr       */
+/*   Updated: 2024/03/15 20:27:59 by emmodogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void separate_cmd(char *cmd, t_lexer **lex_list)
 
 	if (!cmd || !*cmd)
 		return ;
-	cmd = ft_strtrim(cmd, " "); 
+	cmd = ft_strtrim(cmd, " ""\t"); //made it work with tab on the start and end as well
 	len = len_for_separate(cmd);
 	content = ft_substr(cmd, 0, len);
 	trimmed_content = ft_strtrim(content, " ");
@@ -76,6 +76,6 @@ static void separate_cmd(char *cmd, t_lexer **lex_list)
 
 void	lexer(t_mini *mini)
 {
-	mini->lex_list->lex = NULL; 
+	mini->lex_list->lex = NULL; //abundant?
 	separate_cmd(mini->cmd, &mini->lex_list);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   message.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emmodogl <rootkalixox@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 20:34:27 by emmodogl          #+#    #+#             */
-/*   Updated: 2024/03/15 21:26:25 by atasyure         ###   ########.fr       */
+/*   Updated: 2024/03/15 20:35:33 by emmodogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define MESSAGE_H
 #include "minishell.h"
 
-# define W_ARGS "Error! Only needs program name.\n" 
+# define W_ARGS "Error! Only needs program name.\n" // fixed the message
 # define A_ERR "Error! Allocation init error.\n"
 # define ENV_ERR "Error! ENV Error\n"
 # define EXEC 0

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: emmodogl <rootkalixox@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 05:24:46 by atasyure          #+#    #+#             */
-/*   Updated: 2024/03/15 21:25:04 by atasyure         ###   ########.fr       */
+/*   Updated: 2024/03/15 20:27:51 by emmodogl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,24 @@ int	init(t_mini **mini)
 		return (free(*mini),printf(A_ERR), 1); //changed
 	g_heredoc_sig = 0;
 	return (0);
+}
+
+void	proper_free(t_list **node)
+{
+	t_list *curr_node;
+	t_list *temp;
+
+	curr_node = *node;
+
+	while(curr_node != NULL)
+	{
+		free(curr_node->content);
+		curr_node->content = NULL;
+		temp = curr_node;
+		curr_node = curr_node->next;
+		free(temp);
+		temp = NULL;
+	}
 }
 
 int	single_or_multi_command(t_mini *m_mini)
