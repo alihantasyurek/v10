@@ -6,7 +6,7 @@
 /*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 05:22:38 by atasyure          #+#    #+#             */
-/*   Updated: 2024/03/16 03:51:59 by atasyure         ###   ########.fr       */
+/*   Updated: 2024/03/16 06:02:44 by atasyure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ void	multi_command_(t_parse *parse, char **env, t_mini *m_mini, int *fd)
 			pipe(fd);
 		nparse = _next_command(&parse);
 		parse->pid = fork();
-		//if (parse->pid == 0)
-		//{
+		if (parse->pid == 0)
+		{
 			create_dup_one(parse, fd);
 			run_command(env, parse, fd, m_mini);
-		//}
+		}
 		if (nparse)
 			create_dup_two(nparse, fd);
 		parse = nparse;
@@ -74,6 +74,7 @@ void	multi_command(char **env, int x, t_parse *parse, t_mini *m_mini)
 	if (!fd)
 		return ;
 	multi_command_(parse, env, m_mini, fd);
+	free_(m_mini);
 	dup2(m_mini->parse->std_in, 0);
 	clear_pipe(fd);
 	wait_all(m_mini);
@@ -95,6 +96,8 @@ void	exec(char **env, t_mini *m_mini)
 	if (!x && g_heredoc_sig != -10)
 		only_single_command(env, m_mini->parse, m_mini);
 	else if (g_heredoc_sig != -10)
+	{
 		multi_command(env, 0, m_mini->parse, m_mini);
+	}
 	g_heredoc_sig = 0;
 }

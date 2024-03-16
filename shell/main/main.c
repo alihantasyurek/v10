@@ -6,7 +6,7 @@
 /*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 05:23:53 by atasyure          #+#    #+#             */
-/*   Updated: 2024/03/16 03:36:34 by atasyure         ###   ########.fr       */
+/*   Updated: 2024/03/16 05:16:33 by atasyure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	parser(t_mini *mini, char **env, int control)
 	free_loop(control, mini);
 }
 
-//yorum
 void	start_minishell(t_mini *mini, char **env, int control)
 {
 	while (42)
