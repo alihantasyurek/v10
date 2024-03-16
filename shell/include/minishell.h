@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmodogl <rootkalixox@gmail.com>           +#+  +:+       +#+        */
+/*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 05:24:08 by atasyure          #+#    #+#             */
-/*   Updated: 2024/03/15 20:35:29 by emmodogl         ###   ########.fr       */
+/*   Updated: 2024/03/16 01:56:48 by atasyure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ int					ft_strchrindex_0(char *s, int c);
 void				signals(int sig);
 void				signals_control(void);
 void				proper_free(t_list **node);
-void				go_parser(t_mini *mini, char **env, int control);
+void				parser(t_mini *mini, char **env, int control);
 void				get_readline(t_mini *mini);
 int					env_get(char **env, t_mini **mini);
 void				free_str(char **str);

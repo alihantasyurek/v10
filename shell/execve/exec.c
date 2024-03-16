@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmodogl <rootkalixox@gmail.com>           +#+  +:+       +#+        */
+/*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 05:22:38 by atasyure          #+#    #+#             */
-/*   Updated: 2024/03/15 20:04:55 by emmodogl         ###   ########.fr       */
+/*   Updated: 2024/03/16 03:51:59 by atasyure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ void	multi_command_(t_parse *parse, char **env, t_mini *m_mini, int *fd)
 			pipe(fd);
 		nparse = _next_command(&parse);
 		parse->pid = fork();
-		if (parse->pid == 0)
-		{
+		//if (parse->pid == 0)
+		//{
 			create_dup_one(parse, fd);
 			run_command(env, parse, fd, m_mini);
-		}
+		//}
 		if (nparse)
 			create_dup_two(nparse, fd);
 		parse = nparse;

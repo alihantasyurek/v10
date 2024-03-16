@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmodogl <rootkalixox@gmail.com>           +#+  +:+       +#+        */
+/*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 05:23:53 by atasyure          #+#    #+#             */
-/*   Updated: 2024/03/15 20:32:37 by emmodogl         ###   ########.fr       */
+/*   Updated: 2024/03/16 03:36:34 by atasyure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	get_readline(t_mini *mini)
 }
 
 
-void	go_parser(t_mini *mini, char **env, int control)
+void	parser(t_mini *mini, char **env, int control)
 {
 	control = check(mini);
 	if (!control)
@@ -56,6 +56,7 @@ void	go_parser(t_mini *mini, char **env, int control)
 	free_loop(control, mini);
 }
 
+//yorum
 void	start_minishell(t_mini *mini, char **env, int control)
 {
 	while (42)
@@ -65,7 +66,7 @@ void	start_minishell(t_mini *mini, char **env, int control)
 		{
 			lexer(mini);
 			expander(mini);
-			go_parser(mini, env, control);
+			parser(mini, env, control);
 		}
 		else
 		{
