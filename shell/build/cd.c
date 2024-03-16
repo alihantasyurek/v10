@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmodogl <rootkalixox@gmail.com>           +#+  +:+       +#+        */
+/*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 19:48:33 by emmodogl          #+#    #+#             */
-/*   Updated: 2024/03/15 20:24:01 by emmodogl         ###   ########.fr       */
+/*   Updated: 2024/03/17 00:55:31 by atasyure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,7 @@ void	exec_cd(t_parse *data, t_mini *m_mini)
 			m_mini->exec_status = 0;
 		}
 		else
-		{
-			if (str)
-				free(str);
 			m_mini->exec_status = 1;
-			// perror("cd");
-		}
 	}
 	else
 		exec_cd1(str, data, m_mini);

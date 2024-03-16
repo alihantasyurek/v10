@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmodogl <rootkalixox@gmail.com>           +#+  +:+       +#+        */
+/*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 05:21:23 by atasyure          #+#    #+#             */
-/*   Updated: 2024/03/15 20:31:54 by emmodogl         ###   ########.fr       */
+/*   Updated: 2024/03/17 01:02:50 by atasyure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ void	builtin_exit(t_mini **m_mini)
 	{
 		printf("bash: exit: %s: numeric argument required\n",
 			(*m_mini)->parse->text[0]);
-		exit_value = 255;
+		exit_value = 255; ///doru
 	}
 	else if (status == true && !(*m_mini)->parse->text[1])
 		exit_value = ft_atoi((*m_mini)->parse->text[0]);
 	else
 	{
 		printf("bash: exit: too many arguments\n");
-		(*m_mini)->exec_status = 1;
+		(*m_mini)->exec_status = 1; ///doru
 		return ;
 	}
 	(free_loop(1, *m_mini), free_(*m_mini));
