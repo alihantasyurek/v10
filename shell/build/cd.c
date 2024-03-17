@@ -6,12 +6,13 @@
 /*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 19:48:33 by emmodogl          #+#    #+#             */
-/*   Updated: 2024/03/17 00:55:31 by atasyure         ###   ########.fr       */
+/*   Updated: 2024/03/17 02:49:48 by atasyure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 void	exec_cd1(char *str, t_parse *data, t_mini *m_mini)
 {
@@ -35,7 +36,10 @@ void	exec_cd(t_parse *data, t_mini *m_mini)
 			m_mini->exec_status = 0;
 		}
 		else
+		{
+		 	printf("minishell: No such file or directory\n");
 			m_mini->exec_status = 1;
+		}
 	}
 	else
 		exec_cd1(str, data, m_mini);

@@ -3,37 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmodogl <rootkalixox@gmail.com>           +#+  +:+       +#+        */
+/*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 05:20:31 by aatasyure         #+#    #+#             */
-/*   Updated: 2024/03/15 20:23:55 by emmodogl         ###   ########.fr       */
+/*   Updated: 2024/03/17 04:14:24 by atasyure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 #include <stdlib.h>
 
+static void small_letter(char *string)
+{
+	int c;
+
+	c = 0;
+	while(string[c] != '\0')
+	{
+	if(string[c] >= 'A' && string[c] <= 'Z')
+		string[c] += 32;
+	c++;
+	}
+}
+
+static int check_letter(char *string)
+{
+	int c;
+
+	c = 0;
+	while(string[c] != '\0')
+	{
+	if(string[c] >= 'A' && string[c] <= 'Z')
+		return (1);
+	c++;
+	}
+	return (0);
+}
+
+//#include <stdio.h>
 void	execute_builtin_command(t_parse *parse, t_mini *m_mini)
 {
 	t_parse	*new_parse;
 
 	new_parse = parse;
-	if ((ft_strcmp(new_parse->cmd, "echo") == 0) || (ft_strcmp(new_parse->cmd,
-				"ECHO") == 0))
+	if(check_letter(new_parse->cmd))
+		small_letter(new_parse->cmd);
+
+	if ((ft_strcmp(new_parse->cmd, "echo") == 0))
 		exec_echo(new_parse, m_mini);
-	if (ft_strcmp(new_parse->cmd, "cd" ) == 0|| (ft_strcmp(new_parse->cmd,
-				"CD") == 0)) //changed
+	if (ft_strcmp(new_parse->cmd, "cd" ) == 0)
 		exec_cd(new_parse, m_mini);
-	if ((ft_strcmp(new_parse->cmd, "pwd") == 0) || (ft_strcmp(new_parse->cmd,
-				"PWD") == 0))
+	if ((ft_strcmp(new_parse->cmd, "pwd") == 0))
 		exec_pwd(new_parse, m_mini);
+	if ((ft_strcmp(new_parse->cmd, "env") == 0))
+		exec_env(m_mini);
 	if (ft_strcmp(new_parse->cmd, "export") == 0)
 		exec_export(new_parse, m_mini);
 	if (ft_strcmp(new_parse->cmd, "unset") == 0)
 		exec_unset(new_parse, m_mini, 0, 0);
-	if (((ft_strcmp(new_parse->cmd, "env") == 0) || (ft_strcmp(new_parse->cmd,
-					"ENV") == 0)))
-		exec_env(m_mini);
 }
 
 int	is_builtin(t_parse *data)
