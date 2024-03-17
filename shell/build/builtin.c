@@ -6,14 +6,14 @@
 /*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 05:20:31 by aatasyure         #+#    #+#             */
-/*   Updated: 2024/03/17 04:14:24 by atasyure         ###   ########.fr       */
+/*   Updated: 2024/03/17 04:34:56 by atasyure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 #include <stdlib.h>
 
-static void small_letter(char *string)
+static void make_lowercase(char *string)
 {
 	int c;
 
@@ -26,7 +26,7 @@ static void small_letter(char *string)
 	}
 }
 
-static int check_letter(char *string)
+static int check_case(char *string)
 {
 	int c;
 
@@ -40,14 +40,13 @@ static int check_letter(char *string)
 	return (0);
 }
 
-//#include <stdio.h>
 void	execute_builtin_command(t_parse *parse, t_mini *m_mini)
 {
 	t_parse	*new_parse;
 
 	new_parse = parse;
-	if(check_letter(new_parse->cmd))
-		small_letter(new_parse->cmd);
+	if(check_case(new_parse->cmd))
+		make_lowercase(new_parse->cmd);
 
 	if ((ft_strcmp(new_parse->cmd, "echo") == 0))
 		exec_echo(new_parse, m_mini);
@@ -65,22 +64,27 @@ void	execute_builtin_command(t_parse *parse, t_mini *m_mini)
 
 int	is_builtin(t_parse *data)
 {
-	if ((ft_strcmp(data->cmd, "echo") == 0) || (ft_strcmp(data->cmd,
-				"ECHO") == 0))
+	char *temp;
+
+	temp = NULL;
+	temp = data->cmd;
+	if(check_case(data->cmd))
+		make_lowercase(data->cmd);
+
+	if (ft_strcmp(data->cmd, "echo") == 0) 
 		return (1);
-	if ((ft_strcmp(data->cmd, "pwd") == 0) || (ft_strcmp(data->cmd,
-				"PWD") == 0))
+	if (ft_strcmp(data->cmd, "pwd") == 0) 
 		return (1);
-	if ((ft_strcmp(data->cmd, "env") == 0) || (ft_strcmp(data->cmd,
-				"ENV") == 0))
+	if (ft_strcmp(data->cmd, "env") == 0) 
 		return (1);
-	if ((ft_strcmp(data->cmd, "cd") == 0) || (ft_strcmp(data->cmd,
-				"CD") == 0)) //changed
+	if (ft_strcmp(data->cmd, "cd") == 0) 
 		return (1);
 	if ((ft_strcmp(data->cmd, "export") == 0))
 		return (1);
 	if ((ft_strcmp(data->cmd, "unset") == 0))
 		return (1);
+
+	data->cmd = temp;
 	return (0);
 }
 

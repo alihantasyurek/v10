@@ -8,9 +8,9 @@
             "type": "lldb",
             "request": "launch",
             "name": "Debug",
-            "program": "",
+            "program": "/Users/atasyure/Desktop/v10/shell/minishell",
             "args": [],
-            "cwd": "${workspaceFolder}"
+            "cwd": "/Users/atasyure/Desktop/v10/shell"
         }
     ]
 }

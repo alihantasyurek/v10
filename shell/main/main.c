@@ -6,7 +6,7 @@
 /*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 05:23:53 by atasyure          #+#    #+#             */
-/*   Updated: 2024/03/17 02:26:20 by atasyure         ###   ########.fr       */
+/*   Updated: 2024/03/17 04:40:24 by atasyure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static int argument_control(int argc, char **argv)
 {
 	(void)argv;
 	if (argc != 1)
-		return (printf(W_ARGS), -1);
+		return (printf(W_ARGS), 1);
 	return (0);
 }
 
@@ -88,10 +88,10 @@ int	main(int argc, char **argv, char **env)
 {
 	t_mini	*mini;
 
-	if (argument_control(argc, argv) != 0) // def 0 as success and 1 as ERROR;
-		return (-1);
+	if (argument_control(argc, argv) != 0) 
+		return (127);
 	if (init(&mini) != 0)
-		return (-1);
+		return (printf(A_ERR), 1); 
 	if (env_get(env, &mini))
 		return (free_init_check(mini), 1);
 	signals_control();
