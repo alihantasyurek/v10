@@ -6,7 +6,7 @@
 /*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 05:20:31 by aatasyure         #+#    #+#             */
-/*   Updated: 2024/03/17 18:46:15 by atasyure         ###   ########.tr       */
+/*   Updated: 2024/03/17 19:01:59 by atasyure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	execute_builtin_command(t_parse *parse, t_mini *m_mini)
 	int		len;
 
 	len = ft_strlen(parse->cmd) + 1;
-	temp = malloc(sizeof(char *) * len);
+	temp = malloc(sizeof(char) * len);
 	ft_strlcpy(temp, parse->cmd, len);
 	make_lowercase(temp);
 	if ((ft_strcmp(temp, "echo") == 0))
