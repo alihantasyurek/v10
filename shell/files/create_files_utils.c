@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_files_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emmodogl <rootkalixox@gmail.com>           +#+  +:+       +#+        */
+/*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 05:21:50 by atasyure          #+#    #+#             */
-/*   Updated: 2024/03/15 20:25:21 by emmodogl         ###   ########.fr       */
+/*   Updated: 2024/03/17 06:38:54 by atasyure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	create_in_files_meta(t_parse *parse, t_mini *mini)
 	{
 		if (pwd)
 			free(pwd);
-		printf("minishell: %s: No such file or directory\n", nparse->text[0]);
+		printf("minishell: No such file or directory\n");
 		return (0);
 	}
 	if (pwd)

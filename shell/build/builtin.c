@@ -6,7 +6,7 @@
 /*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 05:20:31 by aatasyure         #+#    #+#             */
-/*   Updated: 2024/03/17 04:34:56 by atasyure         ###   ########.fr       */
+/*   Updated: 2024/03/17 06:09:20 by atasyure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,51 +40,30 @@ static int check_case(char *string)
 	return (0);
 }
 
-void	execute_builtin_command(t_parse *parse, t_mini *m_mini)
-{
-	t_parse	*new_parse;
-
-	new_parse = parse;
-	if(check_case(new_parse->cmd))
-		make_lowercase(new_parse->cmd);
-
-	if ((ft_strcmp(new_parse->cmd, "echo") == 0))
-		exec_echo(new_parse, m_mini);
-	if (ft_strcmp(new_parse->cmd, "cd" ) == 0)
-		exec_cd(new_parse, m_mini);
-	if ((ft_strcmp(new_parse->cmd, "pwd") == 0))
-		exec_pwd(new_parse, m_mini);
-	if ((ft_strcmp(new_parse->cmd, "env") == 0))
-		exec_env(m_mini);
-	if (ft_strcmp(new_parse->cmd, "export") == 0)
-		exec_export(new_parse, m_mini);
-	if (ft_strcmp(new_parse->cmd, "unset") == 0)
-		exec_unset(new_parse, m_mini, 0, 0);
-}
-
-int	is_builtin(t_parse *data)
+int		execute_builtin_command(t_parse *parse, t_mini *m_mini)
 {
 	char *temp;
 
 	temp = NULL;
-	temp = data->cmd;
-	if(check_case(data->cmd))
-		make_lowercase(data->cmd);
+	temp = parse->cmd;
 
-	if (ft_strcmp(data->cmd, "echo") == 0) 
-		return (1);
-	if (ft_strcmp(data->cmd, "pwd") == 0) 
-		return (1);
-	if (ft_strcmp(data->cmd, "env") == 0) 
-		return (1);
-	if (ft_strcmp(data->cmd, "cd") == 0) 
-		return (1);
-	if ((ft_strcmp(data->cmd, "export") == 0))
-		return (1);
-	if ((ft_strcmp(data->cmd, "unset") == 0))
-		return (1);
+	if(check_case(parse->cmd))
+		make_lowercase(parse->cmd);
 
-	data->cmd = temp;
+	if ((ft_strcmp(parse->cmd, "echo") == 0))
+		return(exec_echo(parse, m_mini),1);
+	if (ft_strcmp(parse->cmd, "cd" ) == 0)
+		return(exec_cd(parse, m_mini),1);
+	if ((ft_strcmp(parse->cmd, "pwd") == 0))
+		return(exec_pwd(parse, m_mini),1);
+	if ((ft_strcmp(parse->cmd, "env") == 0))
+		return(exec_env(m_mini),1);
+	if (ft_strcmp(parse->cmd, "export") == 0)
+		return(exec_export(parse, m_mini),1);
+	if (ft_strcmp(parse->cmd, "unset") == 0)
+		return(exec_unset(parse, m_mini, 0, 0),1);
+
+	parse->cmd = temp;
 	return (0);
 }
 

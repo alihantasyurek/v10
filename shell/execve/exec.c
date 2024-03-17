@@ -6,7 +6,7 @@
 /*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 05:22:38 by atasyure          #+#    #+#             */
-/*   Updated: 2024/03/16 06:25:35 by atasyure         ###   ########.fr       */
+/*   Updated: 2024/03/17 06:39:23 by atasyure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,7 @@
 
 void	run_command(char **env, t_parse *tmp, int *fd, t_mini *m_mini)
 {
-	int	control;
-
-	control = is_builtin(tmp);
-	if (control)
-		execute_builtin_command(tmp, m_mini);
-	else
+	if(execute_builtin_command(tmp, m_mini) == 0)
 		exec_others(tmp, env, fd, m_mini);
 	free_(m_mini);
 	free_loop(1, m_mini);
@@ -36,11 +31,10 @@ void	only_single_command(char **env, t_parse *parse, t_mini *m_mini)
 
 	control = 0;
 	if (parse->type != HEREDOC)
-		control = is_builtin(parse);
-	if (control)
-		execute_builtin_command(m_mini->parse, m_mini);
-	else
-		exec_others(m_mini->parse, env, NULL, m_mini);
+		if(execute_builtin_command(m_mini->parse, m_mini))
+			return ;
+
+	exec_others(m_mini->parse, env, NULL, m_mini);
 }
 
 void	multi_command_(t_parse *parse, char **env, t_mini *m_mini, int *fd)

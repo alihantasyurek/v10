@@ -6,7 +6,7 @@
 /*   By: atasyure <atasyure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 05:24:08 by atasyure          #+#    #+#             */
-/*   Updated: 2024/03/16 01:56:48 by atasyure         ###   ########.fr       */
+/*   Updated: 2024/03/17 06:12:35 by atasyure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void				exec_others(t_parse *parse, char **env, int *fd,
 char				**get_args(t_parse *parse);
 int					single_or_multi_command(t_mini *m_mini);
 t_parse				*_next_command(t_parse **parse);
-void				execute_builtin_command(t_parse *parse, t_mini *m_mini);
+int					execute_builtin_command(t_parse *parse, t_mini *m_mini);
 int					is_builtin(t_parse *data);
 void				run_echo(t_parse *data, int *i);
 void				exec_echo(t_parse *data, t_mini *m_mini);
